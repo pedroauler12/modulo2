@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width" />
     <title>CRUD</title>
 </head>
-<h1>Listagem de Usuários</h1>
-<p><a href="/inserir.html">INSERIR NOVO USUÁRIO</a></p>
+<h1>Listagem de Formações</h1>
+<p><a href="/inserir.html">INSERIR FORMAÇÃO</a></p>
 
 <script>
-    const url = '/usuarios';
+    const url = '/formacoes';
 
     fetch(url)
     .then((response) => {
         return response.json();
     })
     .then((data) => {
-        let usuarios = data;
+        let formacoes = data;
         let saida = '';
-        usuarios.map(function(usuario) {
-        saida += '<strong> '+ `${usuario.nome_completo}` + '</strong> ' + `${usuario.email}`  + ' - ' +  `${usuario.telefone}`;
-        saida += ' - <a href="/atualizar.html?userId=' + `${usuario.userId}` + '">EDITAR</a>';
-        saida += ' | <a href="/removeUsuario?userId='+`${usuario.userId}`+'">REMOVER</a></br>';
+        formacoes.map(function(formacao) {
+        saida += '<strong> '+ `${formacao.userId}` + '</strong> ' + `${formacao.instituicao}`  + ' - ' +  `${formacao.curso}` + ' - ' +  `${formacao.data_inicio}`+ ' - ' +  `${formacao.data_fim}`;
+        saida += ' - <a href="/atualizar.html?id_formacao=' + `${formacao.id_formacao}` + '">EDITAR</a>';
+        saida += ' | <a href="/removeFormacao?id_formacao='+`${formacao.id_formacao}`+'">REMOVER</a></br>';
         });
         document.getElementById('resultado').innerHTML = saida;
     })

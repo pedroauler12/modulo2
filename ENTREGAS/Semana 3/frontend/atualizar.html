@@ -6,34 +6,42 @@
         <meta name="viewport" content="width=device-width" />
         <title>CRUD</title>
     </head>
-    <h1>Atualização de Usuário</h1>
-        <form name="form1" method="post" action="/atualizaUsuario">
-            NOME COMPLETO: <input type="text" id="nome" name="nome" size="50" value="">
-            <br>
-            EMAIL: <input type="e-mail" id="email" name="email" value="">
-            <br>
-            TELEFONE: <input type="phone" id="telefone" name="telefone" value="">
-            <br>
+    <h1>Atualização de Formação</h1>
+        <form name="form1" method="post" action="/atualizaFormacao">
+        id_formacao: <input type="text" name="id_formacao" value="" required>
+         <br>
+         userId: <input type="text" name="user id" value="" required>
+         <br>
+         instituicao: <input type="text" name="instituicao" value="" required>
+         <br>
+        curso: <input type="text" name="curso" value="" required>
+        <br>
+         data_inicio: <input type="text" name="data_inicio" value="" required>
+         <br>
+         data_fim: <input type="text" name="data_fim" value="" required>
+        <br>
             <input type="hidden" id="userId" name="userId" value="">
             <input type="submit" value="ATUALIZAR">  
         </form>    
         <script>
             let url = new URL(window.location.href);
             let params = url.searchParams;
-            url = '/atualizaUsuario?userId='+url.searchParams.get("userId");
+            url = '/atualizaFormacao?id_formacao='+url.searchParams.get("id_formacao");
 
             fetch(url)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                let usuarios = data;
+                let formacao = data;
 
-                usuarios.map(function(usuario) {
-                    document.getElementById('userId').value = usuario.userId;
-                    document.getElementById('nome').value = usuario.nome_completo;
-                    document.getElementById('email').value = usuario.email;
-                    document.getElementById('telefone').value = usuario.telefone;
+                formacoes.map(function(formacao) {
+                    document.getElementById('id_formacao').value = formacao.formacao_id;
+                    document.getElementById('userId').value = formacao.userId;
+                    document.getElementById('instituicao').value = formacao.instituicao;
+                    document.getElementById('curso').value = formacao.curso;
+                    document.getElementById('data_inicio').value = formacao.data_inicio;
+                    document.getElementById('data_fim').value = formacao.data_fim;
                 });
                 alert(response.json());
             })

@@ -16,11 +16,11 @@ app.use(express.static("../frontend/"));
 app.use(express.json());
 
 // Retorna todos registros (é o R do CRUD - Read)
-app.get('/usuarios', (req, res) => {
+app.get('/formacoes', (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH); // Abre o banco
-    var sql = 'SELECT * FROM usuario ORDER BY nome_completo COLLATE NOCASE';
+    var sql = 'SELECT * FROM formacao ORDER BY id_formacao COLLATE NOCASE';
         db.all(sql, [],  (err, rows ) => {
             if (err) {
                 throw err;
@@ -31,27 +31,27 @@ app.get('/usuarios', (req, res) => {
 });
 
 // Insere um registro (é o C do CRUD - Create)
-app.post('/insereUsuario', urlencodedParser, (req, res) => {
+app.post('/insereFormacao', urlencodedParser, (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*'); 
     var db = new sqlite3.Database(DBPATH); // Abre o banco
-    sql = "INSERT INTO usuario (nome_completo, email, telefone) VALUES ('" + req.body.nome + "', '" + req.body.email + "', " + req.body.telefone + ")";
+    sql = "INSERT INTO formacao (id_formacao, userId, instituicao , curso , data_inicio , data_fim) VALUES ('" + req.body.id_formacao + "', '" + req.body.userId + "', '" + req.body.instituicao + "', '" + req.body.curso + "' , '" + req.body.data_inicio + "', '" + req.body.data_fim + "')";
     console.log(sql);
     db.run(sql, [],  err => {
         if (err) {
             throw err;
         }	
     });
-    res.write('<p>USUARIO INSERIDO COM SUCESSO!</p><a href="/">VOLTAR</a>');
+    res.write('<p>DADOS INSERIDO COM SUCESSO!</p><a href="/">VOLTAR</a>');
     db.close(); // Fecha o banco
     res.end();
 });
 
 // Monta o formulário para o update (é o U do CRUD - Update)
-app.get('/atualizaUsuario', (req, res) => {
+app.get('/atualizaFormacao', (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*'); 
-    sql = "SELECT * FROM usuario WHERE userId="+ req.query.userId;
+    sql = "SELECT * FROM formacao WHERE id_formacao="+ req.query.id_formacao;
     console.log(sql);
     var db = new sqlite3.Database(DBPATH); // Abre o banco
     db.all(sql, [],  (err, rows ) => {
@@ -64,13 +64,13 @@ app.get('/atualizaUsuario', (req, res) => {
 });
 
 // Atualiza um registro (é o U do CRUD - Update)
-app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
+app.post('/atualizaFormacao', urlencodedParser, (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*'); 
-    sql = "UPDATE usuario SET nome_completo='" + req.body.nome + "', email = '" + req.body.email + "' , telefone='" + req.body.telefone + "' WHERE userId='" + req.body.userId + "'";
+    sql = "UPDATE formacao SET id_formacao='" + req.body.id_formacao  + "' , instituicao='" + req.body.instituicao + "', curso '" + req.body.curso + "' , data_inicio '" + req.body.data_inicio + "' , data_fim'" + req.body.data_fim + "' WHERE userId='" + req.body.userId + "'";
     console.log(sql);
     var db = new sqlite3.Database(DBPATH); // Abre o banco
-    db.run(sql, [],  err => {
+    db.run(sql, [],  err => {z
         if (err) {
             throw err;
         }
@@ -81,17 +81,17 @@ app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
 });
 
 // Exclui um registro (é o D do CRUD - Delete)
-app.get('/removeUsuario', urlencodedParser, (req, res) => {
+app.get('/removeFormacao', urlencodedParser, (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*'); 
-    sql = "DELETE FROM usuario WHERE userId='" + req.query.userId + "'";
+    sql = "DELETE FROM formacao WHERE id_formacao ='" + req.query.id_formacao + "'";
     console.log(sql);
     var db = new sqlite3.Database(DBPATH); // Abre o banco
     db.run(sql, [],  err => {
         if (err) {
             throw err;
         }
-        res.write('<p>USUARIO REMOVIDO COM SUCESSO!</p><a href="/">VOLTAR</a>');
+        res.write('<p>DADOS REMOVIDO COM SUCESSO!</p><a href="/">VOLTAR</a>');
         res.end();
     });
     db.close(); // Fecha o banco
