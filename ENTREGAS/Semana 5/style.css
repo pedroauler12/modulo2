@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    margin: 0%;
+   
+}
+
+body{
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+.nome {
+    color: blue;
+    text-align: center;
+    font-size: 70px;
+    position: relative;
+    top: 160px;
+    right: 450px;
+   
+}
+
+.profissão{
+    text-align: center;
+    position: relative;
+    bottom: 55px;
+    right: 490px;
+    font-size:30px ;
+}
+
+.foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    top: 30px;
+}
+
+.mail {
+    font-size: 20px;
+    text-align: left;
+}
+
+.mail b{
+    color:blue;
+}
+
+.telefone {
+    font-size: 20px;
+    text-align: left;
+}
+
+.telefone b{
+    color:blue;
+}
+
+.dados {
+   position: relative;
+    left: 300px;
+    padding-bottom: 15px;
+   
+}
+
+.formação h2{
+    font-size: 35px;
+    color: blue;
+    padding:5px;
+}
+
+.Instituição {
+    font-size: 20px;
+    padding: 5px;
+    
+}
+
+.Curso {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.data {
+    font-size: 15x;
+    color: darkgray;
+    padding: 10px;
+}
+
+.experiencias {
+ font-size: 35px;
+ color: blue;
+ padding: 5px;
+}
+
+.empresa {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.cargo{
+    font-size: 20px;
+    padding: 5px;
+}
+
+.data2 {
+    font-size: 15px;
+    color: darkgrey;
+    padding: 10px;
+}
+
+.realizações {
+    font-size: 35px;
+    color: blue;
+    padding: 5px;
+}
+
+.certificados {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.habilidades {
+    font-size: 20px;
+    
+}
+
+
+
+
