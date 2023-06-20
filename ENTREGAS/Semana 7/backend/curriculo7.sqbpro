@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/pedroauler/Desktop/GitHub/modulo2/ENTREGAS/Semana 7/backend/curriculo7.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1219"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,11:mainexperiencia"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">BEGIN TRANSACTION;
+
+CREATE TABLE IF NOT EXISTS &quot;usuario&quot; (
+    &quot;userId&quot; INTEGER PRIMARY KEY AUTOINCREMENT,
+    &quot;nome_completo&quot; CHAR(128) NOT NULL,
+    &quot;email&quot; CHAR(55) NOT NULL,
+    &quot;telefone&quot; CHAR(14)
+);
+
+CREATE TABLE IF NOT EXISTS &quot;formacao&quot; (
+    &quot;id_formacao&quot; INTEGER PRIMARY KEY,
+    &quot;userId&quot; INTEGER,
+    &quot;instituicao&quot; CHAR(255),
+    &quot;curso&quot; CHAR(255),
+    &quot;data_inicio&quot; CHAR(255),
+    &quot;data_fim&quot; CHAR(255),
+    FOREIGN KEY (&quot;userId&quot;) REFERENCES &quot;usuario&quot; (&quot;userId&quot;)
+);
+
+CREATE TABLE IF NOT EXISTS &quot;experiencia&quot; (
+    &quot;id_experiencia&quot; INTEGER PRIMARY KEY,
+    &quot;userId&quot; INTEGER,
+    &quot;nome_empresa&quot; CHAR(255),
+    &quot;cargo&quot; CHAR(255),
+    &quot;data_inicio&quot; CHAR(255),
+    &quot;data_fim&quot; CHAR(255),
+    FOREIGN KEY (&quot;userId&quot;) REFERENCES &quot;usuario&quot; (&quot;userId&quot;)
+);
+
+CREATE TABLE IF NOT EXISTS &quot;realizacoes&quot; (
+    &quot;id_realizacao&quot; INTEGER PRIMARY KEY,
+    &quot;userId&quot; INTEGER,
+    &quot;certificados&quot; CHAR(255),
+    &quot;habilidades&quot; CHAR(255),
+    FOREIGN KEY (&quot;userId&quot;) REFERENCES &quot;usuario&quot; (&quot;userId&quot;)
+);
+
+INSERT INTO &quot;usuario&quot; (&quot;nome_completo&quot;, &quot;email&quot;, &quot;telefone&quot;) VALUES ('Pedro Auler', 'pedro@example.com', '1234567890');
+INSERT INTO &quot;formacao&quot; VALUES (1, 1, 'Stanford', 'ciencia da computação', '2019', '2023');
+INSERT INTO &quot;experiencia&quot; VALUES (1, 1, 'Spotify', 'programador backend', '2021', NULL);
+INSERT INTO &quot;realizacoes&quot; VALUES (1, 1, 'Supervised machine learning', 'programador backend');
+
+COMMIT;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
